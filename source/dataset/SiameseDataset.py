@@ -22,8 +22,12 @@ class SiameseDataset(Dataset):
     def _encode(self, sample):
         return {
             "idx": sample["idx"],
-            "text": torch.tensor(
-                self.tokenizer.encode(text=sample["text"], max_length=self.max_length, padding="max_length",
+            "qs1": torch.tensor(
+                self.tokenizer.encode(text=sample["qs1"], max_length=self.max_length, padding="max_length",
+                                      truncation=True)
+            ),
+            "qs2": torch.tensor(
+                self.tokenizer.encode(text=sample["qs2"], max_length=self.max_length, padding="max_length",
                                       truncation=True)
             ),
             "cls": sample["cls"]

@@ -1,0 +1,6 @@
+name: BR_MedRQE
+dir: resource/dataset/BR_MedRQE/
+max_length: 32
+num_classes: 2
+batch_size: 128
+num_workers: 12
