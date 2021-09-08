@@ -20,7 +20,7 @@ def get_logger(params):
 
 def get_model_checkpoint_callback(params):
     return ModelCheckpoint(
-        monitor="val_Mic-F1",
+        monitor="val_Cos-SMLTY",
         dirpath=params.model_checkpoint.dir,
         filename=f"{params.model.name}_{params.data.name}",
         save_top_k=1,
@@ -31,7 +31,7 @@ def get_model_checkpoint_callback(params):
 
 def get_early_stopping_callback(params):
     return EarlyStopping(
-        monitor='val_Wei-F1',
+        monitor='val_Cos-SMLTY',
         patience=params.trainer.patience,
         min_delta=params.trainer.min_delta,
         mode='max'

@@ -3,9 +3,8 @@ import json
 import pytorch_lightning as pl
 import torch
 from hydra.utils import instantiate
-from torch import nn, Tensor
-from torchmetrics import MetricCollection, F1, CosineSimilarity
 
+from torchmetrics import MetricCollection
 from source.metric.CosineEmbedding import CosineEmbedding
 
 
@@ -18,12 +17,6 @@ class SiameseModel(pl.LightningModule):
         self.encoder = instantiate(hparams.encoder)
 
         self.pooling = instantiate(hparams.pooling)
-
-        self.cls_head = torch.nn.Sequential(
-            torch.nn.Dropout(hparams.dropout),
-            torch.nn.Linear(hparams.hidden_size, hparams.num_classes),
-            torch.nn.LogSoftmax(dim=-1)
-        )
 
         # loss
         self.loss = torch.nn.CosineEmbeddingLoss(margin=0.0, reduction='mean')

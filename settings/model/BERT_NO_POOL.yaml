@@ -6,7 +6,7 @@ encoder:
   output_attentions: False
 
 pooling:
-  _target_: source.pooling.NoPooling.NoPooling
+  _target_: source.pooling.AveragePooling.AveragePooling
 
 hidden_size: 768
 
